@@ -30,10 +30,8 @@ tasks:
 
   tail-logs:
     name: Tail logs
-    description: Follow application logs for troubleshooting
+    description: Display recent application logs for troubleshooting
     triggeredBy:
       - manual
     command: |
-      mkdir -p app/logs
-      touch app/logs/app.log
-      tail -f app/logs/app.log
+      tail -n 50 logs/app.log
