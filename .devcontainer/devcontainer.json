@@ -1,8 +1,7 @@
 {
   "name": "Incident Commander AI Demo",
   "image": "mcr.microsoft.com/devcontainers/python:3.11",
-  "workspaceFolder": "/workspace",
-  "postCreateCommand": "pip install -r app/requirements.txt",
+  "postCreateCommand": "cd ${containerWorkspaceFolder} && pip install -r app/requirements.txt",
   "forwardPorts": [8000],
   "portsAttributes": {
     "8000": {
