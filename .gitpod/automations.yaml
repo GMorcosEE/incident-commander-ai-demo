@@ -1,26 +1,39 @@
-version: 1
-
 services:
-  - name: api-server
-    description: FastAPI Checkout Service
-    command: |
-      cd app
-      echo "🚀 Starting Checkout API on port 8000..."
-      uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-    readinessProbe:
-      httpGet:
-        path: /health
-        port: 8000
-      initialDelaySeconds: 5
-      periodSeconds: 3
-      timeoutSeconds: 2
-      successThreshold: 1
-      failureThreshold: 3
+  checkout-api:
+    name: Checkout API
+    description: FastAPI service with a deterministic bug for the Incident Commander AI demo
+    triggeredBy:
+      - postDevcontainerStart
+    commands:
+      start: |
+        cd app
+        uvicorn main:app --host 0.0.0.0 --port 8000
+      ready: |
+        curl -sSf http://localhost:8000/health > /dev/null
 
-  - name: log-monitor
-    description: Monitor application logs
+tasks:
+  run-tests:
+    name: Run unit tests
+    description: Execute the pytest suite
+    triggeredBy:
+      - manual
     command: |
-      echo "📋 Waiting for logs to be generated..."
-      sleep 5
-      echo "📋 Tailing application logs (logs/app.log)..."
-      tail -f logs/app.log 2>/dev/null || echo "No logs yet. Run the incident simulation to generate logs."
+      pytest -q
+
+  simulate-incident:
+    name: Simulate incident
+    description: Trigger the buggy endpoint and generate logs
+    triggeredBy:
+      - manual
+    command: |
+      python scripts/simulate_incident.py
+
+  tail-logs:
+    name: Tail logs
+    description: Follow application logs for troubleshooting
+    triggeredBy:
+      - manual
+    command: |
+      mkdir -p logs
+      touch logs/app.log
+      tail -f logs/app.log
