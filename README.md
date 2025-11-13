@@ -28,7 +28,10 @@ incident-commander-ai-demo/
 │   └── test_checkout.py    # Test suite
 ├── rca/
 │   └── README.md           # RCA reports directory
-├── .gitpod.yml             # Ona workspace configuration
+├── .devcontainer/
+│   └── devcontainer.json   # Dev container configuration
+├── .gitpod/
+│   └── automations.yaml    # Service orchestration
 └── README.md               # This file
 ```
 
@@ -46,12 +49,17 @@ The application contains a **division by zero error** in the discount calculatio
 ### Option 1: Using Ona Workspace (Recommended)
 
 1. Open this repository in Ona
-2. Wait for automatic setup (dependencies install, API starts)
-3. Run the incident simulation:
+2. Wait for automatic setup (devcontainer builds, dependencies install)
+3. Start the services:
+   ```bash
+   gitpod automations service start api-server
+   gitpod automations service start log-monitor
+   ```
+4. Run the incident simulation:
    ```bash
    python scripts/simulate_incident.py
    ```
-4. Check logs:
+5. Check logs:
    ```bash
    cat logs/app.log
    ```
