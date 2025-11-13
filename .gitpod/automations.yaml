@@ -34,6 +34,6 @@ tasks:
     triggeredBy:
       - manual
     command: |
-      mkdir -p logs
-      touch logs/app.log
-      tail -f logs/app.log
+      mkdir -p app/logs
+      touch app/logs/app.log
+      tail -f app/logs/app.log
