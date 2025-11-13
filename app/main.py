@@ -10,15 +10,17 @@ from typing import List, Optional
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-# Ensure logs directory exists
-Path("logs").mkdir(exist_ok=True)
+# Ensure logs directory exists (relative to project root)
+PROJECT_ROOT = Path(__file__).parent.parent
+LOG_DIR = PROJECT_ROOT / "logs"
+LOG_DIR.mkdir(exist_ok=True)
 
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - [%(filename)s:%(lineno)d] - %(message)s',
     handlers=[
-        logging.FileHandler('logs/app.log'),
+        logging.FileHandler(LOG_DIR / 'app.log'),
         logging.StreamHandler(sys.stdout)
     ]
 )
