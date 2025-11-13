@@ -89,7 +89,7 @@ def main():
     
     if not wait_for_api():
         print("\n❌ Cannot proceed - API is not running")
-        print("Start the API first: cd app && uvicorn main:app --host 0.0.0.0 --port 8000")
+        print("Start the API first: cd app && uvicorn main:app --host localhost --port 8000")
         sys.exit(1)
     
     # Run successful checkout first

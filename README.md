@@ -72,7 +72,7 @@ pip install -r app/requirements.txt
 
 # Start the API
 cd app
-uvicorn main:app --host 0.0.0.0 --port 8000
+uvicorn main:app --host localhost --port 8000
 
 # In another terminal, simulate the incident
 python scripts/simulate_incident.py
