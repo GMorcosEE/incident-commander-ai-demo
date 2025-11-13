@@ -2,6 +2,7 @@
   "name": "Incident Commander AI Demo",
   "image": "mcr.microsoft.com/devcontainers/python:3.11",
   "postCreateCommand": "cd ${containerWorkspaceFolder} && pip install -r app/requirements.txt",
+  "postStartCommand": "gitpod automations service start checkout-api",
   "forwardPorts": [8000],
   "portsAttributes": {
     "8000": {
