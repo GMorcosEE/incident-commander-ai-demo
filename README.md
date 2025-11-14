@@ -30,7 +30,7 @@ incident-commander-ai-demo/
 │   └── README.md           # RCA reports directory
 ├── .devcontainer/
 │   └── devcontainer.json   # Dev container configuration
-├── .gitpod/
+├── .ona/
 │   └── automations.yaml    # Service orchestration
 └── README.md               # This file
 ```
@@ -216,6 +216,7 @@ curl http://localhost:8000/health
 
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
 - [Ona Documentation](https://www.gitpod.io/docs)
+- [Ona Automations](https://www.gitpod.io/docs/automations)
 - [Pytest Documentation](https://docs.pytest.org/)
 
 ## 🤝 Contributing
